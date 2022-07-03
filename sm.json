@@ -1,0 +1,8 @@
+{
+  "_latest": "0.3.0",
+  "apiEndpoint": "https://myapp-do-zero.prismic.io/api/v2",
+  "libraries": [
+    "@/slices"
+  ],
+  "framework": "previousNext"
+}

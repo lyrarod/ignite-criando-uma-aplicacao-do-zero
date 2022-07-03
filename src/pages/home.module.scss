@@ -1,1 +1,72 @@
-// TODO
+.mainContainer {
+  padding-bottom: 4rem;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    height: 10.625rem;
+  }
+
+  button {
+    margin: 4rem 0 5rem;
+  }
+}
+
+.content {
+  & + div {
+    margin-top: 48px;
+  }
+
+  strong {
+    font-weight: 700;
+    font-size: 28px;
+    line-height: 34px;
+    text-align: justify;
+    letter-spacing: -0.5px;
+    color: #f8f8f8;
+  }
+
+  p {
+    margin: 8px 0 24px 0;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-align: justify;
+    color: #d7d7d7;
+  }
+
+  span {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+.infoContainer {
+  display: flex;
+  color: var(--info);
+
+  span {
+    display: flex;
+    align-items: center;
+  }
+
+  span + span {
+    margin-left: 1.5rem;
+  }
+
+  .icon {
+    margin-right: 8px;
+  }
+}
+
+.btnCarregar {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: justify;
+  color: var(--highlight);
+  background: transparent;
+  border: none;
+}
