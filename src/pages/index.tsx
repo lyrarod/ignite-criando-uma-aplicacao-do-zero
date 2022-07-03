@@ -52,18 +52,14 @@ export default function Home({ postsPagination }: HomeProps) {
     // console.log(data);
 
     const newPosts = data.results.map((post: Post) => ({
-      uid: post.uid,
+      ...post,
       first_publication_date: format(
         new Date(post.first_publication_date),
         'dd MMM yyyy',
         { locale: ptBR }
       ),
-      data: {
-        title: post.data.title,
-        subtitle: post.data.subtitle,
-        author: post.data.author,
-      },
     }));
+    // console.log(newPosts);
 
     setNextPage(data.next_page);
     setPosts([...posts, ...newPosts]);
