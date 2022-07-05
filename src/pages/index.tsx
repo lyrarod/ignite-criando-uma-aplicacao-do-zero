@@ -68,7 +68,7 @@ export default function Home({ postsPagination }: HomeProps) {
   return (
     <>
       <Head>
-        <title>Home | spacetraveling.</title>
+        <title>Home | Spacetraveling.</title>
       </Head>
 
       <main className={`${styles.mainContainer} ${commonStyles.container}`}>
@@ -102,7 +102,7 @@ export default function Home({ postsPagination }: HomeProps) {
         ))}
 
         {nextPage && (
-          <button className={styles.btnCarregar} onClick={loadMorePosts}>
+          <button className={styles.btnLoadMorePosts} onClick={loadMorePosts}>
             Carregar mais posts
           </button>
         )}
@@ -115,7 +115,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient({});
 
   const postsResponse = await prismic.getByType('posts', {
-    pageSize: 2,
+    pageSize: 3,
     orderings: {
       field: 'document.first_publication_date',
       direction: 'desc',
@@ -124,7 +124,7 @@ export const getStaticProps: GetStaticProps = async () => {
   // console.log(postsResponse);
   // console.log(JSON.stringify(postsResponse, null, 2));
 
-  const posts = postsResponse.results.map(post => ({
+  const posts = postsResponse.results?.map(post => ({
     uid: post.uid,
     first_publication_date: post.first_publication_date,
     data: {
