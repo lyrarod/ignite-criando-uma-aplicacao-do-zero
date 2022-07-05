@@ -51,6 +51,16 @@ export default function Post({ post }: PostProps) {
     { locale: ptBR }
   );
 
+  const readingTime = post.data.content.reduce((acc, content) => {
+    const wordsBody = RichText.asText(content.body).split(' ').length;
+    const wordsHeading = content.heading.split(' ').length;
+
+    const average = (acc += Math.ceil((wordsBody + wordsHeading) / 200));
+
+    return average;
+  }, 0);
+  // console.log(readingTime);
+
   return (
     <>
       <Head>
@@ -80,7 +90,8 @@ export default function Post({ post }: PostProps) {
               {post.data.author}
             </span>
             <span className={styles.readingTime}>
-              <FiClock size={20} className={styles.icon} /> 4 Min
+              <FiClock size={20} className={styles.icon} />
+              {`${readingTime} min`}
             </span>
           </div>
 
@@ -126,7 +137,7 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
   // console.log(response);
   // console.log(JSON.stringify(response, null, 2));
 
-  interface contentPost {
+  interface postContent {
     heading: string;
     body: {
       text: string;
@@ -139,9 +150,10 @@ export const getStaticProps: GetStaticProps = async ({ params: { slug } }) => {
     first_publication_date: response.first_publication_date,
     data: {
       title: response.data.title,
+      subtitle: response.data.subtitle,
       banner: { url: response.data.banner.url },
       author: response.data.author,
-      content: response.data.content.map((content: contentPost) => ({
+      content: response.data.content.map((content: postContent) => ({
         heading: content.heading,
         body: [...content.body],
       })),
